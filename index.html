@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10111b">
+<title>Moviebuff Kannada News</title>
+<style>
+:root{--bg:#10111b;--panel:#1a1c2b;--panel2:#22253a;--text:#f5f5fb;--muted:#b8bad0;--accent:#ffca28;--line:#33364c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans Kannada",sans-serif}
+header{padding:24px 16px 18px;background:linear-gradient(135deg,#241b4d,#111827 65%,#381b32);border-bottom:1px solid var(--line)}
+.wrap{max-width:1050px;margin:auto}h1{margin:0;font-size:clamp(25px,5vw,38px)}.tag{color:#e0dff1;margin-top:7px}
+nav{display:flex;gap:8px;overflow-x:auto;padding:13px 14px;background:#151625;border-bottom:1px solid var(--line)}
+nav button{white-space:nowrap;border:1px solid #42455f;border-radius:20px;background:var(--panel);color:var(--text);padding:9px 14px;font-size:14px}
+nav button.active{background:var(--accent);color:#171717;border-color:var(--accent);font-weight:700}
+main{max-width:1050px;margin:auto;padding:18px 14px 40px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+h2{font-size:21px;margin:0}.small{font-size:13px;color:var(--muted)}
+#refresh{border:0;background:var(--accent);color:#181818;font-weight:700;padding:10px 14px;border-radius:10px}
+#status{color:var(--muted);padding:18px 4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;min-height:190px}
+.source{font-size:12px;color:var(--accent);margin-bottom:9px}
+.card h3{font-size:17px;line-height:1.55;margin:0 0 12px}
+.card .date{font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.links a{font-size:13px;color:#151515;background:var(--accent);padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:650}
+.links a.secondary{color:#eee;background:var(--panel2);border:1px solid #454861}
+footer{border-top:1px solid var(--line);padding:20px 14px;color:var(--muted);font-size:12px;text-align:center;line-height:1.7}
+.notice{background:#2a2432;border:1px solid #57435b;padding:12px;border-radius:10px;color:#e5dbea;font-size:13px;margin-bottom:16px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>🎬 Moviebuff Kannada News</h1>
+<div class="tag">ಕನ್ನಡದಲ್ಲಿ ಸಿನಿಮಾ ಸುದ್ದಿ • Kannada · Telugu · Tamil · Hindi · OTT</div>
+</div></header>
+<nav id="tabs">
+<button class="active" data-cat="all">ಎಲ್ಲಾ ಸುದ್ದಿ</button>
+<button data-cat="kannada">ಕನ್ನಡ</button><button data-cat="telugu">ತೆಲುಗು</button>
+<button data-cat="tamil">ತಮಿಳು</button><button data-cat="hindi">ಹಿಂದಿ</button>
+<button data-cat="ott">OTT</button><button data-cat="boxoffice">ಬಾಕ್ಸ್ ಆಫೀಸ್</button>
+</nav>
+<main>
+<div class="row"><div><h2 id="heading">ಇತ್ತೀಚಿನ ಸಿನಿಮಾ ಸುದ್ದಿಗಳು</h2><div class="small">Google News RSS • ಸುದ್ದಿ ಲಭ್ಯತೆ ಮೇಲೆ ಅವಲಂಬಿತ</div></div><button id="refresh">↻ ಸುದ್ದಿ Refresh</button></div>
+<div class="notice">ಸೂಚನೆ: ಇದು ಉಚಿತ RSS ಆವೃತ್ತಿ. ಸುದ್ದಿ ಶೀರ್ಷಿಕೆಗಳು ಮೂಲ ಸುದ್ದಿಯ ಭಾಷೆಯಲ್ಲಿ ಕಾಣಿಸಬಹುದು. “ಕನ್ನಡದಲ್ಲಿ ಓದಿ” ಒತ್ತಿದರೆ Google Translate ಮೂಲಕ ಅನುವಾದ ಪ್ರಯತ್ನಿಸಬಹುದು. ಮೂಲ ಸುದ್ದಿಯ ಹಕ್ಕುಗಳು ಸಂಬಂಧಿತ ಪ್ರಕಾಶಕರಿಗೆ ಸೇರಿವೆ.</div>
+<div id="status">ಸುದ್ದಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ…</div><section class="grid" id="news"></section>
+</main>
+<footer>Moviebuff Kannada News · ಸುದ್ದಿಯ ಸಂಪೂರ್ಣ ವರದಿಗಾಗಿ ಮೂಲ ಪ್ರಕಾಶಕರ ಲಿಂಕ್ ತೆರೆಯಿರಿ.<br>ಸುದ್ದಿಗಳ ಲಭ್ಯತೆ ಮತ್ತು ಭಾಷೆ Google News RSS ಮೇಲೆ ಅವಲಂಬಿತವಾಗಿರುತ್ತದೆ.</footer>
+<script>
+const categories = {
+ all: ["ಕನ್ನಡ ಸಿನಿಮಾ","ತೆಲುಗು ಸಿನಿಮಾ","ತಮಿಳು ಸಿನಿಮಾ","ಹಿಂದಿ ಸಿನಿಮಾ","OTT ಬಿಡುಗಡೆ ಸಿನಿಮಾ"],
+ kannada: ["ಕನ್ನಡ ಸಿನಿಮಾ"],
+ telugu: ["ತೆಲುಗು ಸಿನಿಮಾ"],
+ tamil: ["ತಮಿಳು ಸಿನಿಮಾ"],
+ hindi: ["ಹಿಂದಿ ಸಿನಿಮಾ Bollywood"],
+ ott: ["OTT release India movies"],
+ boxoffice: ["Indian movie box office collection"]
+};
+let current = "all";
+const $ = id => document.getElementById(id);
+function safe(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function translateUrl(url){return "https://translate.google.com/translate?sl=auto&tl=kn&u="+encodeURIComponent(url);}
+function formatDate(s){if(!s)return "";let d=new Date(s);return isNaN(d)?"":d.toLocaleString("kn-IN",{dateStyle:"medium",timeStyle:"short"});}
+async function loadNews(){
+ $("status").textContent="ಸುದ್ದಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ…"; $("news").innerHTML="";
+ try{
+  const resp=await fetch("/.netlify/functions/news?category="+encodeURIComponent(current));
+  if(!resp.ok)throw new Error("News function returned "+resp.status);
+  const data=await resp.json();
+  if(!data.items||!data.items.length){$("status").textContent="ಈ ವಿಭಾಗದಲ್ಲಿ ಈಗ ಸುದ್ದಿ ಸಿಗಲಿಲ್ಲ. ಮತ್ತೆ Refresh ಮಾಡಿ.";return;}
+  $("status").textContent=`${data.items.length} ಸುದ್ದಿ ಫಲಿತಾಂಶಗಳು`;
+  $("news").innerHTML=data.items.map(n=>`<article class="card">
+   <div class="source">${safe(n.source||"ಸಿನಿಮಾ ಸುದ್ದಿ")}</div>
+   <h3>${safe(n.title)}</h3>
+   <div class="date">${safe(formatDate(n.pubDate))}</div>
+   <div class="links"><a href="${safe(n.link)}" target="_blank" rel="noopener">ಮೂಲ ಸುದ್ದಿ ಓದಿ ↗</a><a class="secondary" href="${safe(translateUrl(n.link))}" target="_blank" rel="noopener">ಕನ್ನಡದಲ್ಲಿ ಓದಿ</a></div>
+  </article>`).join("");
+ }catch(e){$("status").textContent="ಸುದ್ದಿ ಲೋಡ್ ಆಗಲಿಲ್ಲ. Internet ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ, ಸ್ವಲ್ಪ ಸಮಯದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.";console.error(e);}
+}
+document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll("#tabs button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ current=b.dataset.cat;$("heading").textContent=b.textContent+" — ಸಿನಿಮಾ ಸುದ್ದಿ";loadNews();
+}));
+$("refresh").addEventListener("click",loadNews);loadNews();
+</script>
+</body></html>
